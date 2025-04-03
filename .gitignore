@@ -1,5 +1,6 @@
 # LaTeX cruft
 build/*
+.tmp/*
 
 # Editor cruft
 *.swp

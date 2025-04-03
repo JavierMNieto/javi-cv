@@ -11,7 +11,7 @@
 
 % Macro for auto-bolding author name in bibliography
 \usepackage{xstring}
-\def\FormatName#1{ \IfSubStr{#1}{Barnowski}{\textbf{#1}}{#1} }
+\def\FormatName#1{ \IfSubStr{#1}{Nieto}{\textbf{#1}}{#1} }
 
 % For recovering section titles after suppressing them for bibtex
 \let\resumesection\section
@@ -44,393 +44,187 @@
 
 \begin{document}
 
-\name{Ross W. Barnowski, Ph.D \vspace*{.1in}}
+\name{Javier Nieto, Ph.D. Student \vspace*{.1in}}
 % HACK: res.cls has listing for addresses - use instead to show current 
 % position
-\address{\large Senior Research Software Engineer}
-%\address{\large Department of Nuclear Engineering}
-%\address{\large Berkeley Institute for Data Science, UC Berkeley}
-\address{\large Biology and Biological Engineering, Caltech}
+% \address{\large Senior Research Software Engineer}
+% \address{\large Biology and Biological Engineering, Caltech}
 
 \begin{resume}
-\section{\sc Contact Information}
-\vspace{.05in}
-\begin{tabular}{@{}p{3in}p{4in}}
-California Institute of Technology & {\bf Phone:}   (847)224-5917 \\
-1200 E California Blvd. MC 114-96  & {\bf E-mail:}  {\tt rossbar@caltech.edu} \\
-Pasadena CA, 91125                 & {\bf GitHub:} \url{https://github.com/rossbar} \\
-\end{tabular}
+  \section{\sc Contact Information}
+  \vspace{.05in}
+  \begin{tabular}{@{}p{3in}p{4in}}
+    University of Illinois Urbana-Champaign & {\bf Phone:}   (618) 407-4812                       \\
+    306 W Elm St                            & {\bf E-mail:}  {\tt jmnieto2@illinois.edu}          \\
+    Urbana, IL, 61801                       & {\bf GitHub:} \url{https://github.com/JavierMNieto} \\
+  \end{tabular}
 
 
-\section{\sc Research Interests}
-open-source software, scientific computing, scientific Python, image reconstruction,
-nuclear instrumentation, gamma-ray spectroscopy and imaging, nuclear medicine
-(diagnostic imaging, radiotherapy), robotics, sensor fusion, SLAM
+  \section{\sc Research Interests}
+  distributed algorithms, decentralized systems, applied cryptography
 
-\section{\sc Education}
-{\bf University of California, Berkeley} - Berkeley, California \hfill 09/2010 - 06/2016\\
-Ph.D, Nuclear Engineering - August 2016 | GPA: 3.98/4.0
-\begin{list2}
-\item {\bf \small Dissertation:} {\em``Development and Evaluation of Real-Time
-                                        Volumetric Compton Gamma-Ray Imaging''} 
-\item {\bf \small Advisor:}  Kai M. Vetter
-\item {\bf \small Coursework:} Advanced Radiation Instrumentation Laboratory,
-                               Radiation Transport Simulation and Modelling,
-                               Medical Imaging Signals and Systems, Computer
-                               Vision, Applications in Parallel Computing,
-                               Python for Scientific Computation
-\end{list2}
-
-{\bf University of Michigan} - Ann Arbor, Michigan \hfill 09/2006 - 04/2010\\
-B.S.E. Nuclear Engineering and Radiological Science - April 2010 | GPA 3.98/4.0
-\begin{list1}
-\item[] {\bf \small Coursework:} Nuclear Reactor Design, Radiation Detection 
-                                 and Measurement, Nuclear Reactor Kinetics,
-                                 General Radiation Laboratory, Nuclear Physics,
-                                 Quantum Mechanics, C++ for Sci/Eng
-\end{list1}
-
-\section{\sc Experience}
-{\bf California Institute of Technology} \\ 
-{\em Senior Research Software Engineer | Biology and Biological Engineering (BBE)} \hfill 12/2022 - Present
-
-Research software development, maintenance and systems administration
-supporting AI/ML research for spatialomics applications.
-In this role, I also directly contribute to the open-source scientific Python
-ecosystem which is actively used in the lab's research.
-
-\begin{list1}
-  \item[] {\bf \small Research software development and maintenance} Supporting
-          various projects across the lab with reproducible, scalable analysis
-          of spatialomics data.
+  \section{\sc Education}
+   {\bf University of Illinois Urbana-Champaign} \hfill Aug 2023 - \emph{Present}\\
+  Ph.D., Computer Science | GPA: 3.84/4.0
   \begin{list2}
-    \item Deep learning for single-cell and tissue data, including cell
-          segmentation and cell-type determination from multiplexed imaging
-          modalities.
-  \item Maintenance of the \href{https://deepcell.org}{Deepcell} suite of
-          open-source libraries for single-cell analysis.
+    % \item {\bf \small Dissertation:} {\em``Development and Evaluation of Real-Time
+    %             Volumetric Compton Gamma-Ray Imaging''}
+    \item {\bf \small Advisor:}  Ling Ren
+    \item {\bf \small Coursework:} Advanced Algorithms, Distributed Algorithms, Cryptography, Multi-Party Computation, Advanced Computer Security
   \end{list2}
-  \item[] {\bf \small NumPy and NetworkX core maintainer}
+
+  {\bf University of Illinois Urbana-Champaign} \hfill Aug 2020 - May 2023\\
+  B.S. Liberal Arts and Science Statistics \& Computer Science | GPA 3.98/4.0
+  % \begin{list1}
+  %   \item[] {\bf \small Coursework:} Algorithms, Discrete Mathematics,
+  % \end{list1}
+
+  \vspace{20pt}
+  \section{\sc Publications}
+
+  % Force references to appear even though they are not cited in the document
+  \nocitepublications{*}
+  \bibliographystylepublications{resume}
+  % Remove 'References' Heading
+  \renewcommand{\section}[2]{}
+  \bibliographypublications{bibliographies/publications}
+  % Recover sectioning 
+  \renewcommand{\section}{\resumesection}
+
+  % \section{\sc Conference Presentations}
+
+  % \nocitepresentations{*}
+  % \bibliographystylepresentations{resume}
+  % % Remove 'References' Heading
+  % \renewcommand{\section}[2]{}
+  % \bibliographypresentations{bibliographies/presentations}
+  % % Recover sectioning 
+  % \renewcommand{\section}{\resumesection}
+
+  %\section{\sc Posters}
+  %
+  %\nociteposters{*}
+  %\bibliographystyleposters{resume}
+  %% Remove 'References' Heading
+  %\renewcommand{\section}[2]{}
+  %\bibliographyposters{bibliographies/posters}
+  %% Recover sectioning 
+  %\renewcommand{\section}{\resumesection}
+
+  % \section{\sc Teaching\footnotemark}
+  % \footnotetext{All graduate student instructor (GSI) positions were full 20
+  %   hr/week appointments}
+
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % {\bf Lecturer | UC Berkeley NE 204} \hfill Fall 2018
+
+  % \begin{list1}
+  %   \item[] Graduate:
+  %   \href{http://ne204-fall2018.github.io}
+  %   {Advanced Concepts in Radiation Detection and Measurement}
+  % \end{list1}
+
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % {\bf Graduate Student Instructor | UC Berkeley STAT 159/259} \hfill Fall 2015
+
+  % \begin{list1}
+  %   \item[] Upper Division\footnotemark/Graduate:
+  %   \href{http://www.jarrodmillman.com/stat159-fall2015/}
+  %   {Reproducible and Collaborative Statistical Data Science}
+  % \end{list1}
+  % \footnotetext{Upper Division = Juniors/Senior-level, Lower Division =
+  %   Freshman/Sophomore-level}
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % {\bf Graduate Student Instructor | UC Berkeley NE 92} \hfill Fall 2014
+
+  % \begin{list1}
+  %   \item[] Lower Division: Introduction to Nuclear Engineering
+  % \end{list1}
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \section{\sc Honors and Awards}
+
+  Support for Underrepresented Groups in Engineering (SURGE) Fellowship \hfill 2023 \\
+  Graduate College Fellowship \hfill 2023 \\
+  Sloan Scholar, Alfred P. Sloan Foundation’s University Center of Exemplary Mentoring \hfill 2023 \\
+
+  \section{\sc Experience}
+   {\bf Amazon Robotics} \hfill Boulder, Colorado \\
+  {\em Software Development Engineer Intern} \hfill May - Aug 2022
+
   \begin{list2}
-    \item Active maintainer of NumPy (array computation) and NetworkX
-          (graph theory and network analysis) libraries.
-    \item Code development, maintenance, and (most importantly) review; community 
-          organization, and project infrastructure.
+    \item Transformed error data using Python and Pandas from testing autonomous mobile robots for Amazon
+    fulfillment centers into useful diagnostics for teams
+    \item Attributed errors automatically to responsible teams and combined duplicate errors for easier analysis
+    \item Created dashboard using Dash to display test results and indicate flaky tests using transformed error data
   \end{list2}
-  \item[] {\bf \small Infrastructure and systems administration}
+
+  {\bf AASI - Applied Aeronautical Systems INC.} \hfill Remote \\
+  {\em Consultant} \hfill Aug 2021 - May 2022
+
   \begin{list2}
-    \item Manage distributed, on-prem compute infrastructure for the lab
-          comprising $>10$ machines, $>30$ GPUs, and $>300$TB with $>30$ users.
+    \item Built solutions for AROPS, Air Refueling Optimization and Planning System, for Rolls Royce where users can
+    easily manage over 600 tanker aircrafts in the United States Air Force
+    \item Managed web app built with React in TypeScript with team of 4 software engineers
+    \item Solved flight path optimizations using graph search algorithms and DAFIF, Digital Aeronautical Flight
+    Information File, data with over 10,000 airports and 500 refueling routes around the world in C++
   \end{list2}
-\end{list1}
 
-{\bf University of California, Berkeley} \\ 
-{\em Scientific Software Developer | Berkeley Institute for Data Science} \hfill 11/2019 - 11/2022
 
-\begin{list1}
-  \item[] {\bf \small Scientific Python Ecosystem} Scientific Python Ecosystem
-          coordination and development: \url{https://scientific-python.org}
+  {\bf DecisionQ} \hfill Arlington, Virginia \\
+  {\em Software Engineer Intern} \hfill May 2021 - Jan 2022
+
   \begin{list2}
-    \item Support development and sceintific computing applications of the
-          scientific Python ecosystem, comprising NumPy, SciPy, Matplotlib,
-          scikit-learn, scikit-image, NetworkX, etc.
-    \item Improve ecosystem coordination and robustness via community
-          development, implementing cross-project decision-making processes,
-          and general support of ecosystem projects.
+    \item Developed concurrent processes in Go for extracting data of Ethereum-based blockchains efficiently
+    \item Designed architecture for reading over 14 terabytes of data from blockchains into PostgreSQL databases
+    \item Directed team of 3 software engineers on how to access the data for APIs using Flask in Python
+    \item Data is used to display interactive graphs of blockchain data on web app built with React in JavaScript
   \end{list2}
-  \item[] {\bf \small NumPy and NetworkX core maintainer}
-  \begin{list2}
-    \item Active maintainer of NumPy (array computation) and NetworkX
-          (graph theory and network analysis) libraries.
-    \item Code development, documentation \& testing, code review, community 
-          organization, and project infrastructure.
-  \end{list2}
-  \item[] {\bf \small Mentorship \& Outreach} 
-  \begin{list2}
-    \item Mentor for outreach/onboarding programs such as Google season of code
-          (NetworkX 3x), Google season of docs (NumPy 2x), and Outreachy
-          (NetworkX 1x).
-    \item Open source development outreach program for the African Masters in
-          Machine Intelligence (AMMI) program from the African Institute for
-          Mathematical Sciences (AIMS): 
-          \url{https://bids-numpy.github.io/workshop\_site\_AIMS\_2021/}
-  \end{list2}
-\end{list1}
 
+  % \section{\sc Activities}
 
-{\em Assistant Research Scientist\footnotemark | Department of Nuclear Engineering} \hfill 08/2018 - 03/2019
-\footnotetext{The period from 08/2018-12/2018 consisted of a joint role 
-              comprising a 60\% appointment as assistant research scientist, 
-              and a 40\% appointment as lecturer.}
+  %  {\bf The Hacker Within, UC Berkeley Chapter} \hfill 2014-2016 \\
+  % {\em Participant/Contributor}
 
-\begin{list1}
-  \item[] {\bf \small Project:} Basic Research - Plastic Scintillator for Unmanned Aerial Systems
-  \begin{list2}
-    \item Preliminary investigation of the incorporation of plastic 
-          scintillation material as structural material in unmanned aerial
-          systems.
-    \item Led acquisition and initial characterization of plastic scintillator
-          material, including development of data acquisition and analysis
-          pipeline for plastic scintillators capable of pulse-shape
-          discrimination for particle identification.
-  \end{list2}
-  \item[] {\bf \small Student Mentorship}
-  \begin{list2}
-    \item Graduate student mentorship for the development and maintenance of
-          radiation instrumentation systems, including gamma-ray imaging
-          devices based on high-purity germanium and inorganic scintillators.
-    \item Training for graduate students on cryogenics, vacuum systems,
-          and front-end electronics.
-  \end{list2}
-  \item[] {\bf \small Data Analysis and Technical Support}
-  \begin{list2}
-    \item Image reconstruction and data analysis in support of projects 
-          related to the mapping of nuclear contamination in Fukushima and
-          Chernobyl.
-    \item Simulation studies in support of gamma-ray imaging for
-          material studies related to uranium enrichment and storage.
-    \item Continued firmware/software development and integration support for
-          the PRISM instrument (see LBNL postdoc description).
-  \end{list2}
-\end{list1}
+  % \begin{list2}
+  %   \item Contributed presentations/breakout sessions on scientific computing
+  %   with python, including machine learning (scikit-learn), data
+  %   visualization, distributed computing, and extending python
+  %   (cython \& the Python C-API).
+  %   \item \url{www.thehackerwithin.org/berkeley/previous.html}
+  % \end{list2}
 
-{\em Lecturer | Department of Nuclear Engineering} \hfill 08/2018 - 12/2018
+  % {\bf Nuclear Engineering Graduate Student Association | NEGSA} \hfill 2012-2015\\
+  % {\em Co-founder \& Officer}
 
-\begin{list1}
-  \item[] {\bf \small Course:} \href{https://ne204-fall2018.github.io}{NE 204: Advanced Concepts in Radiation
-Detection and Measurement}
-  \begin{list2}
-    \item Graduate-level, 3 credit-hour laboratory course on radiation
-          instrumentation and measurement.
-    \item Lecture component emphasizing digital signal processing, physics and
-          operation of semiconductor and scintillation-based detectors, and
-          spectroscopic and imaging applications of radiation instrumentation.
-    \item Laboratory component emphasizing digital signal processing for
-          radiation spectroscopy and timing applications, and multi-channel
-          radiation detectors for neutron and gamma-ray detection, spectroscopy,
-          and imaging.
-    \item Computational component emphasizing reproducibile and collaborative
-          workflows with git, \LaTeX, and the scientific python ecosystem. 
-  \end{list2}
-\end{list1}
+  % \begin{list2}
+  %   \item Officer position: Secretary/Treasurer \hfill 2012-2014
+  %   \item Organized graduate student visit weekends and intra-departmental
+  %   educational and social events.
+  %   \item Initiated computing seminars for discussion of advanced computing
+  %   topics relevant for nuclear engineers (merged with The Hacker Within,
+  %   2014).
+  % \end{list2}
 
-{\bf Lawrence Berkeley National Laboratory}, Berkeley, CA \\
-{\em Postdoctoral Researcher | Applied Nuclear Physics} \hfill 09/2016 - 07/2018
+  % {\bf American Nuclear Society (ANS)} \hfill 2007-2015 \\
+  % {\em University of Michigan \& UC Berkeley Student Chapters}
 
-\begin{list1}
-  \item[] {\bf \small Project:} Portable Radiation Imaging Spectroscopy and Mapping (PRISM)
-  \begin{list2}
-    \item Development of software for multichannel data acquisition system.
-          Firmware integration and testing; network communication for control
-          and data I/O.
-          Full system integration including front-end design for HW/FW
-          developers (engineering interface) and users.
-          Device applications in source search and gamma-ray mapping | 
-          enhanced imaging and localization capabilities.
-    \item Development and implementation of gamma-ray imaging modalities
-          including Compton and proximity-based localization algorithms.
-          Direct application to nuclear contamination remediation in 
-          Fukushima, Japan.
-  \end{list2}
-  \item[] {\bf \small Project:} Small-Animal Molecular Imaging
-  \begin{list2}
-    \item Near-field, high-resolution Compton tomography for molecular imaging
-          with small-animal models.
-          Development and assembly of tomographic system as well as data 
-          analysis and image reconstruction algoritms.
-          Proposed applications for radionuclide uptake studies and theranostics
-          for radiophamaceutical development.
-  \end{list2}
-\end{list1}
+  % \begin{list1}
+  %   \item[] Officer Positions
+  %   \begin{list2}
+  %     \item Social Chair (UCB) \hfill 2012-2013
+  %     \item Vice President (UM) \hfill 2009-2010
+  %     \item Student Conference Volunteer Coordinator (UM) \hfill 2010
+  %     \item Outreach Chair (UM) \hfill 2008-2009
+  %   \end{list2}
+  % \end{list1}
 
-{\em Graduate Student Researcher | Applied Nuclear Physics} \hfill 06/2011 - 05/2016
+  %{\bf Tau Beta Pi} \hfill 2009-2010 \\
+  %{\em Member, MI-$\gamma$} 
 
-\begin{list1}
-  \item[] {\bf \small Project:} Volumetric Gamma-Ray Imaging
-  \begin{list2}
-    \item Develop and evaluate real-time 3D gamma-ray imaging techniques based
-          on sensor fusion and real-time SLAM algorithms.
-    \item Approach successfully demonstrated with portable high-purity 
-          germanium imager as well as hand-portable imager based on 
-          room-temperature semiconductor gamma-ray detectors.
-    \item Software contributions include multithreaded application framework
-          written in Python/C for interfacing with commercial DAQ hardware and
-          implementing real-time gamma-ray imaging analysis.
-  \end{list2}
-\end{list1}
-
-{\bf Lawrence Livermore National Laboratory}, Livermore, CA \\ 
-{\em Undergraduate Researcher | Nuclear Data Group} \hfill 06/2009 - 08/2009 \& 06/2010 - 07/2010
-
-\begin{list1}
-  \item[] {\bf \small Project:} Benchmarking of Evaluated Nuclear Data Library
-                                (ENDL) with Monte Carlo \& deterministic
-                                particle transport codes
-  \begin{list2}
-    \item Generate simulations using Monte Carlo \& deterministic code packages
-          for benchmarking nuclear cross-section data in the (ENDL) libraries.
-    \item Scripting for automation of simulation input and data analysis.
-          Experience with SLURM for job submission on cluster systems.
-    \item Listed as co-author on release of ENDL2011.
-  \end{list2}
-\end{list1}
-
-{\bf Argonne National Laboratory}, Argonne, IL \\ 
-{\em SULI Summer Intern} \hfill 05/2008 - 08/2008
-
-\begin{list1}
-  \item[] {\bf \small Project:} Millimeter-wave radar for remote detection of
-                                plumes of ionizing radiation from illicit
-                                nuclear reprocessing activities.
-  \begin{list2}
-    \item Technical report selected for publication in Journal of Undergraduate
-            Science (1 of 18 winners out of 600 applicants).
-    \item Winner of national SULI poster competition at AAAS conference.
-  \end{list2}
-\end{list1}
-
-\vspace{20px}
-\section{\sc Publications}
-
-% Force references to appear even though they are not cited in the document
-\nocitepublications{*}
-\bibliographystylepublications{resume}
-% Remove 'References' Heading
-\renewcommand{\section}[2]{}
-\bibliographypublications{bibliographies/publications}
-% Recover sectioning 
-\renewcommand{\section}{\resumesection}
-
-\section{\sc Conference Presentations}
-
-\nocitepresentations{*}
-\bibliographystylepresentations{resume}
-% Remove 'References' Heading
-\renewcommand{\section}[2]{}
-\bibliographypresentations{bibliographies/presentations}
-% Recover sectioning 
-\renewcommand{\section}{\resumesection}
-
-%\section{\sc Posters}
-%
-%\nociteposters{*}
-%\bibliographystyleposters{resume}
-%% Remove 'References' Heading
-%\renewcommand{\section}[2]{}
-%\bibliographyposters{bibliographies/posters}
-%% Recover sectioning 
-%\renewcommand{\section}{\resumesection}
-
-\section{\sc Teaching\footnotemark}
-\footnotetext{All graduate student instructor (GSI) positions were full 20 
-hr/week appointments}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\bf Lecturer | UC Berkeley NE 204} \hfill Fall 2018
-
-\begin{list1}
-\item[] Graduate: 
-        \href{http://ne204-fall2018.github.io}
-             {Advanced Concepts in Radiation Detection and Measurement}
-\end{list1}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\bf Graduate Student Instructor | UC Berkeley STAT 159/259} \hfill Fall 2015 
-
-\begin{list1}
-\item[] Upper Division\footnotemark/Graduate: 
-        \href{http://www.jarrodmillman.com/stat159-fall2015/}
-             {Reproducible and Collaborative Statistical Data Science}
-\end{list1}
-\footnotetext{Upper Division = Juniors/Senior-level, Lower Division = 
-Freshman/Sophomore-level}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\bf Graduate Student Instructor | UC Berkeley NE 92} \hfill Fall 2014
-
-\begin{list1}
-  \item[] Lower Division: Introduction to Nuclear Engineering
-\end{list1}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\bf Graduate Student Instructor | UC Berkeley NE 120} \hfill Fall 2012
-
-\begin{list1}
-  \item[] Upper Division: Nuclear Materials
-\end{list1}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\bf Graduate Student Instructor | UC Berkeley NE 120} \hfill Fall 2011
-
-\begin{list1}
-  \item[] Upper Division: Nuclear Materials
-\end{list1}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\bf Graduate Student Instructor | UC Berkeley NE 104} \hfill Spring 2011
-
-\begin{list1}
-  \item[] Upper Division: Nuclear Instrumentation Laboratory
-\end{list1}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\bf Graduate Student Instructor | UC Berkeley NE 101} \hfill Fall 2010
-
-\begin{list1}
-  \item[] Upper Division: Introduction to Nuclear Physics
-\end{list1}
-
-\section{\sc Honors and Awards} 
-
-Best Oral Presentation Award - University Industry Technology Interchange \hfill 2016 \\
-Nuclear Science and Security Consortium Fellow \hfill 2014 - 2016 \\
-American Nuclear Society Graduate Scholarship \hfill 2014 \\
-UC Berkeley Outstanding GSI Award \hfill 2012 \\
-University of Michigan Joseph M. Geisinger Scholar \hfill 2006 - 2010 \\
-University of Michigan Class of 1931E Honors Scholar \hfill 2007 - 2010 \\
-Sustainable Energy Fellowship Program Awardee, Cornell University \hfill 2010 \\
-NEUP Scholarship Recipient \hfill 2009 - 2010 \\
-American Nuclear Society National Scholarship Recipient \hfill 2007 - 2010 \\
-
-\section{\sc Activities}
-
-{\bf The Hacker Within, UC Berkeley Chapter} \hfill 2014-2016 \\ 
-{\em Participant/Contributor} 
-
-\begin{list2}
-  \item Contributed presentations/breakout sessions on scientific computing
-        with python, including machine learning (scikit-learn), data
-        visualization, distributed computing, and extending python 
-        (cython \& the Python C-API).
-  \item \url{www.thehackerwithin.org/berkeley/previous.html}
-\end{list2}
-
-{\bf Nuclear Engineering Graduate Student Association | NEGSA} \hfill 2012-2015\\
-{\em Co-founder \& Officer} 
-
-\begin{list2}
-  \item Officer position: Secretary/Treasurer \hfill 2012-2014
-  \item Organized graduate student visit weekends and intra-departmental 
-        educational and social events.
-  \item Initiated computing seminars for discussion of advanced computing 
-        topics relevant for nuclear engineers (merged with The Hacker Within,
-        2014).
-\end{list2}
-
-{\bf American Nuclear Society (ANS)} \hfill 2007-2015 \\
-{\em University of Michigan \& UC Berkeley Student Chapters} 
-
-\begin{list1}
-  \item[] Officer Positions
-  \begin{list2}
-    \item Social Chair (UCB) \hfill 2012-2013
-    \item Vice President (UM) \hfill 2009-2010
-    \item Student Conference Volunteer Coordinator (UM) \hfill 2010
-    \item Outreach Chair (UM) \hfill 2008-2009
-  \end{list2}
-\end{list1}
-
-%{\bf Tau Beta Pi} \hfill 2009-2010 \\
-%{\em Member, MI-$\gamma$} 
-
-%\section{\sc Computer Skills}
-%
-%% Consider adding section here
+  %\section{\sc Computer Skills}
+  %
+  %% Consider adding section here
 
 \end{resume}
 \end{document}
