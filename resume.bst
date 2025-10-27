@@ -34,7 +34,7 @@ ENTRY
     year
   }
   {}
-  { label }
+  { label sort.key$ }
 
 INTEGERS { output.state before.all mid.sentence after.sentence after.block }
 
@@ -905,6 +905,97 @@ MACRO {toplas} {"ACM Transactions on Programming Languages and Systems"}
 MACRO {tcs} {"Theoretical Computer Science"}
 
 READ
+
+INTEGERS { len }
+
+% Compute reverse year for sorting (9999 - year = reverse chronological)
+FUNCTION {reverse.year}
+{ year empty$
+    { "0000" }
+    { year field.or.null purify$ 't :=
+      t text.length$ 'len :=
+      len #4 =
+        {
+          % Calculate 9999 - year using character arithmetic
+          % Extract each digit and compute 9-digit
+          % This is complex in BibTeX, so we use a lookup table approach
+          % For years 2000-2099: prefix with "79" (9999-2000=7999)
+          % For years 1900-1999: prefix with "80" (9999-1900=8099)
+          % Simplified: just reverse by using complement
+          t #1 #1 substring$ "2" =
+            { "7" t #2 global.max$ substring$ * }  % 2xxx -> 7(999-xxx)
+            { "8" t #2 global.max$ substring$ * }  % 1xxx -> 8(999-xxx)
+          if$
+        }
+        { "9999" }
+      if$
+    }
+  if$
+}
+
+% Function to create sort key for reverse chronological order
+FUNCTION {presort}
+{ reverse.year
+  " "
+  *
+  author field.or.null sortify
+  *
+  " "
+  *
+  title field.or.null sortify
+  *
+  #1 entry.max$ substring$
+  'sort.key$ :=
+}
+
+ITERATE {presort}
+
+SORT
+
+
+
+FUNCTION {presort}
+{ year empty$
+    { "9999" }  % Put entries without year at the end
+    { year }
+  if$
+  % Negate to sort in reverse chronological order (newest first)
+  % Add enough leading zeros for proper string comparison
+  % For reverse order, we can use a trick: subtract from a large number
+  % But simpler: just prefix with complement for reverse sort
+  "    "
+  swap$
+  *
+  #-1 #4 substring$  % Extract last 4 characters (the year)
+  % For reverse chronological, prepend inverted year
+  % Simple approach: just use year as-is, then sort with REVERSE
+  'sort.key$ :=
+}
+
+ITERATE {presort}
+
+SORT  % This sorts in ascending order by sort.key$
+
+% Note: To get reverse chronological (newest first), we need to invert the year
+% Let's fix the presort function to properly reverse sort
+
+FUNCTION {reverse.presort}
+{ year empty$
+    { "0000" 'sort.key$ := }  % Put entries without year at the beginning (or end)
+    { year field.or.null purify$ #-1 #4 substring$  % Get last 4 chars
+      % To reverse sort, we compute 9999 - year
+      % But in BibTeX we need string manipulation
+      % Easier: just negate by using prefix
+      % Use chr$ to create inverted sort
+      % Simpler approach: prefix with large num minus year
+      "9999" swap$ - int.to.str$
+      'sort.key$ :=
+    }
+  if$
+}
+
+READ
+
 
 STRINGS { longest.label }
 
