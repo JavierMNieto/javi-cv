@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>$if(title)$$title$ - $endif$Javier Nieto</title>
+        <link rel="stylesheet" href="../styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            .blog-post-content {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+            .blog-post-header {
+                margin-bottom: 3rem;
+                padding-bottom: 2rem;
+                border-bottom: 2px solid var(--border-color);
+            }
+            .blog-post-content h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            .blog-post-content .post-meta {
+                color: var(--text-light);
+                font-size: 1rem;
+            }
+            .blog-post-content article {
+                line-height: 1.8;
+            }
+            .blog-post-content article h2 {
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+            }
+            .blog-post-content article h3 {
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+            }
+            .blog-post-content article p {
+                margin-bottom: 1.5rem;
+            }
+            .blog-post-content article code {
+                background-color: var(--bg-light);
+                padding: 0.2rem 0.4rem;
+                border-radius: 0.25rem;
+                font-family: "Courier New", monospace;
+            }
+            .blog-post-content article pre {
+                background-color: var(--bg-light);
+                padding: 1rem;
+                border-radius: 0.5rem;
+                overflow-x: auto;
+                margin: 1.5rem 0;
+            }
+            .blog-post-content article pre code {
+                background: none;
+                padding: 0;
+            }
+            .back-link {
+                display: inline-block;
+                margin-bottom: 2rem;
+                color: var(--primary-color);
+                text-decoration: none;
+                font-weight: 500;
+            }
+            .back-link:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-container">
+                <div class="nav-name">
+                    <a
+                        href="../index.html"
+                        style="color: inherit; text-decoration: none"
+                        >Javier Nieto</a
+                    >
+                </div>
+                <div class="nav-links">
+                    <a href="../index.html#about">About</a>
+                    <a href="../index.html#research">Research</a>
+                    <a href="../index.html#publications">Publications</a>
+                    <a href="../index.html#blog">Blog</a>
+                    <a href="../index.html#experience">Experience</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <section style="margin-top: 4rem; padding: 4rem 0">
+                <div class="blog-post-content">
+                    <a href="../index.html#blog" class="back-link"
+                        >← Back to all posts</a
+                    >
+
+                    <div class="blog-post-header">
+                        <h1>$if(title)$$title$$endif$</h1>
+                        <div class="post-meta">
+                            $if(date)$<time>$date$</time>$endif$
+                        </div>
+                    </div>
+
+                    <article>$body$</article>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Javier Nieto. All rights reserved.</p>
+            </div>
+        </footer>
+    </body>
+</html>
