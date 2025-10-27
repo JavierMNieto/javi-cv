@@ -270,14 +270,17 @@ echo "Publications HTML generated successfully"
 # Generate blog posts from Markdown
 if [ "$HAS_PANDOC" = true ]; then
     echo "Generating blog posts from Markdown..."
-    cd "$BLOG_DIR"
+    
+    # Check if blog directory exists
+    if [ -d "$BLOG_DIR" ]; then
+        cd "$BLOG_DIR"
 
-    # Create blog index JSON
-    echo "[" > "$WEBSITE_DIR/blog_index.json"
-    first=true
+        # Create blog index JSON
+        echo "[" > "$WEBSITE_DIR/blog_index.json"
+        first=true
 
-    # Process each markdown file
-    shopt -s nullglob
+        # Process each markdown file
+        shopt -s nullglob
     for md_file in *.md; do
         if [ -f "$md_file" ]; then
             base_name="${md_file%.md}"
@@ -317,7 +320,12 @@ EOF
         fi
     done
 
-    echo "]" >> "$WEBSITE_DIR/blog_index.json"
+        echo "]" >> "$WEBSITE_DIR/blog_index.json"
+    else
+        # Blog directory doesn't exist, create empty index
+        echo "Blog directory not found, skipping blog generation"
+        echo "[]" > "$WEBSITE_DIR/blog_index.json"
+    fi
 else
     # Create empty blog index if pandoc not available
     echo "[]" > "$WEBSITE_DIR/blog_index.json"
