@@ -11,6 +11,11 @@ on:
       - main
   workflow_dispatch:
 
+# Cancel in-progress runs when a new one starts
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
   pages: write
@@ -19,41 +24,40 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: texlive/texlive:latest
+      options: --user root
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
+      - name: Install tools
+        run: |
+          apt-get update -qq
+          apt-get install -y -qq python3-pip git bash pandoc
+        env:
+          DEBIAN_FRONTEND: noninteractive
       
       - name: Cache pip packages
         uses: actions/cache@v4
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-pybtex
+          path: /root/.cache/pip
+          key: texlive-pip-${{ hashFiles('**/build.sh') }}-pybtex
           restore-keys: |
-            ${{ runner.os }}-pip-
+            texlive-pip-
       
       - name: Install Python dependencies
-        run: |
-          pip install pybtex
+        run: pip3 install --break-system-packages pybtex
       
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: resume.tex
-          working_directory: .
-          compiler: pdflatex
-          args: -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build
-          post_compile: |
-            bibtex build/publications.aux
-            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build resume.tex
-            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build resume.tex
-            mv build/resume.pdf .
-          extra_system_packages: "biber"
+      - name: Build resume PDF
+        run: |
+          mkdir -p build
+          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build resume.tex
+          bibtex build/publications.aux || true
+          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build resume.tex
+          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build resume.tex
+          mv build/resume.pdf .
       
       - name: Build website
         run: |
@@ -78,6 +82,8 @@ jobs:
       - name: Commit and push PDF and website (if on master/main)
         if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
         run: |
+          # Configure git to work in container
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add resume.pdf website/publications_generated.html website/blog_index.json
