@@ -24,14 +24,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      - name: Install LaTeX and build tools
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+      
+      - name: Install Python dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-bibtex-extra biber pandoc python3-pip
           pip install pybtex
       
-      - name: Build resume using Makefile
-        run: make
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: resume.tex
+          working_directory: .
+          compiler: pdflatex
+          args: -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build
+          post_compile: |
+            bibtex build/publications.aux
+            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build resume.tex
+            pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build resume.tex
+            mv build/resume.pdf .
+          extra_system_packages: "biber"
       
       - name: Build website
         run: |
