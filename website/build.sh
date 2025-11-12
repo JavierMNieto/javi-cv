@@ -106,9 +106,16 @@ def format_venue(entry):
             journal = fields['journal']
             # Clean BibTeX formatting
             journal = re.sub(r'\{+([^}]+)\}+', r'\1', journal)
-            # Skip if it's just an arXiv preprint
+            # For arXiv preprints with submission notes, show the note instead
             if 'arxiv preprint' in journal.lower():
-                return ''
+                if 'note' in fields:
+                    note = fields['note']
+                    # Clean BibTeX formatting and LaTeX commands
+                    note = re.sub(r'\\emph\{([^}]+)\}', r'<em>\1</em>', note)
+                    note = re.sub(r'\{+([^}]+)\}+', r'\1', note)
+                    venue_parts.append(note)
+                # If no note, skip the arXiv journal line entirely
+                return ', '.join(venue_parts) if venue_parts else ''
             venue_parts.append(f"<em>{journal}</em>")
             if 'volume' in fields:
                 venue_parts.append(f"vol. {fields['volume']}")
