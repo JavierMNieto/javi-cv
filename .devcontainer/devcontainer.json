@@ -1,0 +1,35 @@
+{
+    "name": "Javi CV",
+    "build": { "dockerfile": "Dockerfile" },
+    "workspaceFolder": "/javi-cv/",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/javi-cv/,type=bind,consistency=cached",
+    "init": true,
+    "mounts": [
+        // Creates a unique named volume that persists across rebuilds
+        "source=claude-code-config-${devcontainerId},target=/home/vscode/.claude,type=volume"
+    ],
+    "remoteUser": "vscode",
+    // The named volume above is created root-owned; hand it to the remote user
+    // and smoke-test that both builds have the tools they need.
+    "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude && pdflatex --version | head -1 && python3 -c 'import pybtex' && pandoc --version | head -1",
+    "waitFor": "postCreateCommand",
+    // `make serve` in website/ runs python3 -m http.server on 8000
+    "forwardPorts": [8000],
+    "portsAttributes": {
+        "8000": { "label": "Website preview", "onAutoForward": "notify" }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "james-yu.latex-workshop",
+                "anthropic.claude-code",
+                "leanprover.lean4"
+            ],
+            "settings": {
+                "claudeCode.allowDangerouslySkipPermissions": true,
+                "claudeCode.initialPermissionMode": "bypassPermissions",
+                "chat.permissions.default": "autoApprove"
+            }
+        }
+    }
+}
