@@ -118,7 +118,7 @@ h3 {
 /* Hero Section */
 .hero {
     margin-top: 4rem;
-    padding: 6rem 0;
+    padding: 2rem 0 6rem;
 }
 
 .hero-content {
@@ -446,13 +446,6 @@ h3 {
 }
 
 /* Footer */
-footer {
-    background-color: var(--text-color);
-    color: white;
-    padding: 2rem 0;
-    text-align: center;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
     .nav-links {
