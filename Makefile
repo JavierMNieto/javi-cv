@@ -1,4 +1,4 @@
-manuscript = resume
+manuscript = cv
 builddir = build
 latexopt = -file-line-error -halt-on-error -output-directory build
 

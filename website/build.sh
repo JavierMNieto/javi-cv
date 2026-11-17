@@ -122,7 +122,7 @@ def format_venue(entry):
             if 'number' in fields:
                 venue_parts.append(f"no. {fields['number']}")
             if 'pages' in fields:
-                venue_parts.append(f"pp. {fields['pages']}")
+                venue_parts.append(f"pp. {fields['pages'].replace('--', '&ndash;')}")
     
     elif entry_type == 'inproceedings' or entry_type == 'conference':
         if 'booktitle' in fields:
@@ -134,7 +134,7 @@ def format_venue(entry):
                 series = re.sub(r'\{+([^}]+)\}+', r'\1', fields['series'])
                 venue_parts.append(series)
             if 'pages' in fields:
-                venue_parts.append(f"pp. {fields['pages']}")
+                venue_parts.append(f"pp. {fields['pages'].replace('--', '&ndash;')}")
     
     elif entry_type == 'misc' or entry_type == 'unpublished':
         if 'note' in fields:
@@ -164,14 +164,21 @@ def get_links(entry):
         doi = fields['doi']
         links.append(f'<a href="https://doi.org/{doi}" target="_blank" class="pub-link">DOI</a>')
     
+    # Preprint: one entry per paper carries its preprint as eprint plus
+    # eprinttype (DBLP's names; archiveprefix is the older alias)
+    eprint_type = (fields.get('eprinttype') or fields.get('archiveprefix') or '').lower()
+
+    # IACR Cryptology ePrint Archive
+    if 'eprint' in fields and eprint_type == 'iacr':
+        links.append(f'<a href="https://eprint.iacr.org/{fields["eprint"]}" target="_blank" class="pub-link">ePrint</a>')
+
     # arXiv - check multiple sources
     arxiv_id = None
-    
+
     # Method 1: eprint field
-    if 'eprint' in fields and 'archiveprefix' in fields:
-        if fields['archiveprefix'].lower() == 'arxiv':
-            arxiv_id = fields['eprint']
-    
+    if 'eprint' in fields and eprint_type == 'arxiv':
+        arxiv_id = fields['eprint']
+
     # Method 2: arxiv field
     if not arxiv_id and 'arxiv' in fields:
         arxiv_id = fields['arxiv']
@@ -202,7 +209,8 @@ def get_links(entry):
             arxiv_url_match = re.search(r'arxiv\.org/(?:abs|pdf)/(\d+\.\d+)', url)
             if arxiv_url_match:
                 links.append(f'<a href="{url}" target="_blank" class="pub-link">arXiv</a>')
-        elif not any('arXiv' in link for link in links):
+        elif not links:
+            # Only when there is no DOI or preprint link to show
             links.append(f'<a href="{url}" target="_blank" class="pub-link">PDF</a>')
     
     return links

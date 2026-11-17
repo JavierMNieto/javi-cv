@@ -1,6 +1,6 @@
 # Curriculum Vitae
 
-LaTeX source for the resume of Ross Barnowski: [resume.pdf](/resume.pdf)
+LaTeX source for the CV of Javier Nieto: [cv.pdf](/cv.pdf)
 
 ## Attribution
 
@@ -17,4 +17,4 @@ The main change from the original template from DeCorte/Paciorek is the
 addition of bibliography functionality so that publications, conference 
 presentations, etc. can be handled using bibtex.
 
-`make` is used to build `resume.pdf` from the source files using `pdflatex`.
+`make` is used to build `cv.pdf` from the source files using `pdflatex`.

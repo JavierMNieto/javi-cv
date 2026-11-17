@@ -1,4 +1,4 @@
-name: Build Resume PDF and Website
+name: Build CV PDF and Website
 
 on:
   push:
@@ -50,28 +50,32 @@ jobs:
       - name: Install Python dependencies
         run: pip3 install --break-system-packages pybtex
       
-      - name: Build resume PDF
+      - name: Build CV PDF
         run: |
           mkdir -p build
-          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build resume.tex
+          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build cv.tex
           bibtex build/publications.aux || true
-          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build resume.tex
-          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build resume.tex
-          mv build/resume.pdf .
+          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build cv.tex
+          pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -output-directory=build cv.tex
+          mv build/cv.pdf .
       
       - name: Build website
         run: |
           cd website
           bash build.sh
       
-      - name: Copy resume to website
-        run: cp resume.pdf website/
+      - name: Copy CV to website
+        # resume.pdf is the CV's old name: kept so links already sent out
+        # (repository and website) keep working after the rename to cv.pdf
+        run: |
+          cp cv.pdf resume.pdf
+          cp cv.pdf resume.pdf website/
       
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
-          name: resume-pdf
-          path: resume.pdf
+          name: cv-pdf
+          path: cv.pdf
           retention-days: 90
       
       - name: Upload GitHub Pages artifact
@@ -86,9 +90,9 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add resume.pdf website/publications_generated.html website/blog_index.json
+          git add cv.pdf resume.pdf website/publications_generated.html website/blog_index.json
           git add website/blog/*.html 2>/dev/null || true
-          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update resume and website [skip ci]"
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update CV and website [skip ci]"
           git push
 
   deploy:

@@ -4,3 +4,14 @@ build/*
 
 # Editor cruft
 *.swp
+.claude/executor.*
+.claude/planner.*
+.claude/asking.*
+.claude/handed.*
+.claude/assistant.*
+.claude/worktrees/
+.claude/app-token.*
+.claude/github-*
+.claude/webhook.*
+.claude/refreshes.*
+.claude/settings.local.json

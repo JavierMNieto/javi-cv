@@ -114,8 +114,12 @@ document.addEventListener("DOMContentLoaded", deobfuscateEmail);
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
+        // The Email links start as "#" and become "mailto:" on load; let
+        // anything that is no longer an in-page anchor work normally.
+        const href = this.getAttribute("href");
+        if (!href.startsWith("#") || href === "#") return;
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
+        const target = document.querySelector(href);
         if (target) {
             target.scrollIntoView({
                 behavior: "smooth",

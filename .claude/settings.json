@@ -1,0 +1,6 @@
+{
+  "enabledPlugins": {
+    "writing@workflow": true,
+    "codex@openai-codex": false
+  }
+}
