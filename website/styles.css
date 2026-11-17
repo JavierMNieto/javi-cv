@@ -163,6 +163,11 @@ h3 {
     max-width: 800px;
 }
 
+/* Paragraphs of the bio sit closer to each other than to the buttons */
+.bio:has(+ .bio) {
+    margin-bottom: 1rem;
+}
+
 .bio a {
     color: var(--primary-color);
     text-decoration: none;
@@ -417,61 +422,6 @@ h3 {
     content: "→";
 }
 
-/* Timeline */
-.timeline {
-    position: relative;
-    padding-left: 2rem;
-}
-
-.timeline::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: var(--border-color);
-}
-
-.timeline-item {
-    position: relative;
-    margin-bottom: 2.5rem;
-}
-
-.timeline-item::before {
-    content: "";
-    position: absolute;
-    left: -2.5rem;
-    top: 0.5rem;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    border: 3px solid var(--bg-color);
-}
-
-.timeline-date {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-}
-
-.timeline-content h3 {
-    color: var(--text-color);
-    margin-bottom: 0.25rem;
-}
-
-.institution {
-    color: var(--primary-color);
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-}
-
-.timeline-content p {
-    color: var(--text-light);
-}
-
 /* Contact */
 .contact-info {
     display: grid;
@@ -538,10 +488,6 @@ footer {
 
     .blog-post {
         padding: 1.5rem;
-    }
-
-    .timeline {
-        padding-left: 1.5rem;
     }
 
     .links {

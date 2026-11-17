@@ -1,7 +1,10 @@
 ---
+paths:
+  - "website/index.html"
 signals:
   - "\\\\section|list2|\\\\item"
   - "\\\\hfill"
+  - "class=\"bio\"|id=\"experience\"|timeline"
 ---
 # CV: Javi's calls on what the CV shows
 
@@ -14,3 +17,4 @@ Grammar and tiers: `/Overleaf/.claude/decisions/README.md`. This is the project 
 - `cv-old-address-kept` **The build also publishes the CV as `resume.pdf`, in the repository and on the website, next to `cv.pdf`.** (Javi, 2026-11-17) Chosen with the question tool: links already sent out (applications, LinkedIn, an email signature) keep working after the rename in `cv-not-resume`.
 - `cv-button-opens-site-copy` **The website's CV button links to the site's own `cv.pdf`, which opens in the browser, not to the GitHub raw file, which downloads.** (Javi, 2026-11-17) Chosen with the question tool after the site audit.
 - `photo-small-no-location` **The profile photo on the website is at most 500×500 pixels (twice its 250-pixel display size) with all metadata stripped, location included.** (Javi, 2026-11-17) Chosen with the question tool after the audit found the 3000×3000, 2.6 MB original carried the GPS position where it was taken.
+- `site-bio-not-lists` **The website lists no Experience, Education or Honors and Awards: the bio says the current position, the latest research internship, the background (degree and former employers) and the honors in two short paragraphs, and the details stay in the CV PDF behind the CV button.** (Javi, 2026-11-17) Chosen with the question tool over one data file feeding both the CV and one-line lists on the site (al-folio, Hugo Blox, bamos/cv); it follows Joachim Neu's (https://www.jneu.net/) and Ling Ren's (https://sites.google.com/view/renling) homepages, which keep positions and fellowships in the bio, so there is nothing to keep in sync by hand.
